@@ -9,7 +9,7 @@ const ip = responseData.ip;
 sessionStorage.setItem("userIpAddress",ip);
 ipAdsress.innerText = ip;
 }
-//getIpAdress();
+getIpAdress();
 
 //opening location info in next window
 getStarted.addEventListener("click",event => {
