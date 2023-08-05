@@ -7,17 +7,18 @@ const organisation = document.getElementById("org");
 const hostName = document.getElementById("host-name");
 const pinCode = document.getElementById("pincode");
 const timeZone = document.getElementById("timeZone");
+const dateTime = document.getElementById("date-time");
 const map = document.getElementById("map");
 const message = document.getElementById("message");
 const postOfficesContainer = document.getElementById("nearby-post-offices");
 
 //retrieving current client's ip address from session storage
-const ipAdsress = sessionStorage.getItem("userIpAddress");
+const ipAddress = sessionStorage.getItem("userIpAddress");
 
 //showing ip address on the header
-document.getElementById("ipAddress").innerText = ipAdsress;
+document.getElementById("ipAddress").innerText = ipAddress;
 
-const endpoint = `http://ip-api.com/json/${ipAdsress}`;
+const endpoint = `http://ip-api.com/json/${ipAddress}`;
 
 //fetching location data from api
 async function getLocationInfo() {
@@ -29,7 +30,8 @@ async function getLocationInfo() {
     //     alert("Failed to fetch data ! Refresh to try again");
     //   }
     renderDataOntoUI(responseData);
-  } catch {
+  } catch (Error) {
+    console.log(Error);
     alert("Failed to fetch data ! Refresh to try again");
   }
 }
@@ -54,7 +56,7 @@ async function renderDataOntoUI(data) {
 
   const postOfficeData = await getNearbyPostOffices(zip);
   message.innerText = postOfficeData.Message;
- console.log(postOfficeData)
+  console.log(postOfficeData);
   renderNearbyPostOfficesOntoUI(postOfficeData.PostOffice);
 }
 
@@ -67,51 +69,20 @@ async function getNearbyPostOffices(pincode) {
   return responseData[0];
 }
 
-function renderNearbyPostOfficesOntoUI(postOfficeData){
-    postOfficesContainer.innerHTML = "";
+function renderNearbyPostOfficesOntoUI(postOfficeData) {
+  postOfficesContainer.innerHTML = "";
 
-    postOfficeData.forEach(postOffice => {
-        console.log(postOffice)
+  postOfficeData.forEach((postOffice) => {
+    console.log(postOffice);
 
-        const {Name,BranchType,DeliveryStatus,District,Division}=postOffice;
-        postOfficesContainer.innerHTML += `<div class="post-office">
+    const { Name, BranchType, DeliveryStatus, District, Division } = postOffice;
+    postOfficesContainer.innerHTML += `<div class="post-office">
         <div class="name">Name: <span>${Name}</span></div>
         <div class="branch-type">Branch Type: <span>${BranchType}</span>
         </div>
         <div class="delivery-status">Delivery Status: <span>${DeliveryStatus}</span></div>
         <div class="district">District: <span>${District}</span></div>
         <div class="division">Division: <span>${Division}</span></div>
-    </div>` 
-    })
+    </div>`;
+  });
 }
-/*
-as: "AS135697 Tachyon Communications Pvt Ltd";
-city: "Kanpur";
-country: "India";
-countryCode: "IN";
-isp: "Suyog System And Software Pvt Ltd";
-lat: 26.4969;
-lon: 80.3246;
-org: "Suyog System And Software Pvt Ltd";
-query: "103.158.183.59";
-region: "UP";
-regionName: "Uttar Pradesh";
-status: "success";
-timezone: "Asia/Kolkata";
-zip: "208001";
-*/
-
-/*
-Block: "Kanpur";
-BranchType: "Branch Office directly a/w Head Office";
-Circle: "Uttar Pradesh";
-Country: "India";
-DeliveryStatus: "Delivery";
-Description: null;
-District: "Kanpur Dehat";
-Division: "Kanpur Moffusil";
-Name: "Aanupur";
-Pincode: "208001";
-Region: "Kanpur";
-State: "Uttar Pradesh";
-*/
