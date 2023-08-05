@@ -13,7 +13,7 @@ const message = document.getElementById("message");
 const postOfficesContainer = document.getElementById("nearby-post-offices");
 const searchBar = document.getElementById("search");
 
-//post offices data used to filter 
+//post offices data used to filter
 let postOfficeData = [];
 
 //retrieving current client's ip address from session storage
@@ -34,15 +34,14 @@ async function getLocationInfo() {
     renderDataOntoUI(responseData);
   } catch (Error) {
     // console.log(Error);
-    alert("Failed to fetch data ! Refresh to try again");
   }
 }
 
 //rendering data onto UI
 async function renderDataOntoUI(data) {
-  const {city, region, org,postal,timezone } = data;
-  const lat = data.loc.split(",")[0]
-  const lon = data.loc.split(",")[1]
+  const { city, region, org, postal, timezone } = data;
+  const lat = data.loc.split(",")[0];
+  const lon = data.loc.split(",")[1];
   //setting header location info
   latitude.innerText = lat;
   longitude.innerText = lon;
@@ -59,15 +58,17 @@ async function renderDataOntoUI(data) {
   map.src = `https://maps.google.com/maps?q=${lat}, ${lon}&z=15&output=embed`;
 
   //setting date and time
-  const dateAndTime = new Date().toLocaleString("en-US", { timeZone: timezone });
-  dateTime.innerText=dateAndTime;
+  const dateAndTime = new Date().toLocaleString("en-US", {
+    timeZone: timezone,
+  });
+  dateTime.innerText = dateAndTime;
 
   //fetch post offices
   const postOfficeDataResponse = await getNearbyPostOffices(postal);
-  postOfficeData =postOfficeDataResponse.PostOffice;
-//   console.log(postOfficeData)
+  postOfficeData = postOfficeDataResponse.PostOffice;
+  //   console.log(postOfficeData)
 
-  //setting message 
+  //setting message
   message.innerText = postOfficeDataResponse.Message;
 
   //display post offices data onto UI
@@ -76,12 +77,14 @@ async function renderDataOntoUI(data) {
 
 //getting list of post offices nearby based on pincode
 async function getNearbyPostOffices(pincode) {
-  const response = await fetch(
-    `https://api.postalpincode.in/pincode/${pincode}`
-  );
-  const responseData = await response.json();
-//   console.log(responseData[0]);
-  return responseData[0];
+  try {
+    const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+    const responseData = await response.json();
+    //   console.log(responseData[0]);
+    return responseData[0];
+  } catch (error) {
+    alert("Failed to fetch data ! Refresh to try again");
+  }
 }
 
 //rendering nearby post office onto the UI
@@ -103,21 +106,19 @@ function renderNearbyPostOfficesOntoUI(postOfficeData) {
   });
 }
 
+searchBar.addEventListener("keyup", (event) => {
+  const searchValue = event.target.value.trim().toLowerCase();
+  const filteredData = [];
+  // console.log(searchValue)
+  // console.log(postOfficeData)
+  postOfficeData.forEach((postOffice) => {
+    const name = postOffice.Name.toLowerCase();
+    const branch = postOffice.BranchType.toLowerCase();
 
-searchBar.addEventListener("keyup",(event)=>{
-    const searchValue = event.target.value.trim().toLowerCase();
-    const filteredData = [];
-    // console.log(searchValue)
-    // console.log(postOfficeData)
-    postOfficeData.forEach(postOffice => {
-        const name = postOffice.Name.toLowerCase();
-        const branch = postOffice.BranchType.toLowerCase();
+    if (name.includes(searchValue) || branch.includes(searchValue)) {
+      filteredData.push(postOffice);
+    }
+  });
 
-        if(name.includes(searchValue) || branch.includes(searchValue)){
-            filteredData.push(postOffice);
-        }
-    });
-
-    renderNearbyPostOfficesOntoUI(filteredData);
-
-})
+  renderNearbyPostOfficesOntoUI(filteredData);
+});
