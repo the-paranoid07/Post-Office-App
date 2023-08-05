@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Location Info</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="ip-address-info">
+            IP Address : <span id="ipAddress"></span>
+        </div>
+        <div class="basic-location-info">
+            <div class="left">
+                <div class="latitude">
+                    Lat: <span id="latitude"></span>
+                </div>
+                <div class="longitude">
+                    Long: <span id="longitude"></span>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="city">
+                    City: <span id="city"></span>
+                </div>
+                <div class="region">
+                    Region: <span id="region"></span>
+                </div>
+            </div>
+            <div class="right">
+                <div class="org">
+                    Organisation: <span id="org"></span>
+                </div>
+                <div class="host-name">Hostname: <span id="host-name"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main-container">
+        <section class="map-section">
+            <h3>Your Current Location</h3>
+           
+            <iframe 
+            id="map"
+            src="" 
+            width="90%" 
+            height="700" 
+            frameborder="0" 
+            style="border:0">
+            </iframe>
+        </section>
+        <section class="more-info-section">
+            <h2>More Information About You</h2>
+            <div class="time-info">
+                <div class="time-zone">Time Zone: <span id="timeZone"></span></div>
+                <div class="date-time">Date And Time: <span>05/08/2023 13:30 hours</span></div>
+                <div class="pincode">Pincode: <span id="pincode"></span></div>
+                <div class="message">Message: <span id="message"></span></div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <h2>Post Offices Near You</h2>
+        <div class="search-bar">
+            <img src="Vector.png" alt="search" >
+            <input type="search" placeholder="Search By Name or Branch Office">
+        </div>
+        <div class="nearby-post-offices" id="nearby-post-offices">
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

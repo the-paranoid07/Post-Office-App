@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif; 
+    background-color: black;
+    color: white;
+}
+
+/* header CSS */
+.header{
+   display: flex;
+   flex-direction: column;
+   gap: 3rem;
+   padding: 3rem;
+   /* display: none; */
+}
+.header .ip-address-info{
+    font-size: 36px;
+    color: #B8BCCC80;
+    font-weight: 700;
+}
+.header .ip-address-info span{
+    color: #B8BCCC;
+}
+.header .basic-location-info{
+    font-size: 36px;
+    color: #B8BCCC80;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .basic-location-info span{
+    font-size: 30px;
+    color: #B8BCCC;
+    font-weight: 400;
+}
+/* main-conteiner CSS */
+.main-container{
+    /* padding: 3rem 0rem; */
+}
+/* iframe CSS */
+.map-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+    background-color: #575A85;
+    /* height: 100vh; */
+    width: 100%;
+    padding: 3rem 0rem 5rem;
+    
+    /* display: none; */
+}
+.map-section iframe{
+    /* height: 100vh;
+    width: 90%; */
+    border-radius: 10px;
+}
+.map-section h3{
+    /* padding: 3rem 2rem 1rem; */
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+    color: #B8BCCC;
+}
+
+/* more-info section */
+.more-info-section{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    gap: 1rem;
+    /* display: none; */
+}
+.more-info-section h2{
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+    color: #B8BCCC;
+}
+.more-info-section .time-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 34px;
+    color: #B8BCCC80;
+    font-weight: 600;
+}
+.more-info-section .time-info span{
+    font-size: 30px;
+    color: #B8BCCC;
+    font-weight: 400;
+}
+
+
+/* footer CSS */
+.footer{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    padding: 3rem;
+}
+.footer h2{
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+    color: #B8BCCC;
+}
+.footer .search-bar{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: 3px solid #575A85;
+    border-radius: 10px;
+    padding: 1.5rem;
+    gap: 1rem;
+    
+}
+.footer .search-bar img{
+    width:2%;
+}
+.footer input{
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    color: #B8BCCC;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+.footer ::placeholder{
+    color: #B8BCCC;
+    font-size: 22px;
+    letter-spacing: 0.2rem;
+}
+.nearby-post-offices{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    
+}
+.post-office{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-basis: calc(50% - 10px);
+    background-color: #575A85;
+    padding: 3rem;
+    border-radius: 10px;
+    font-size: 34px;
+    color: #B8BCCC;
+    font-weight: 600;
+}
+.post-office span{
+    color: #ffffff;
+}
