@@ -45,7 +45,7 @@ body{
     font-weight: 400;
 }
 .left-section .app-logo img{
-   width: 100%;
+   width: 80%;
    object-fit: contain;
 }
 
@@ -64,7 +64,7 @@ body{
     padding: 10px;
  }
  .right-section .ip-address-info{
-    font-size: 35px;
+    font-size: 32px;
     font-weight: 700;
     color: #B8BCCC;
     text-align: center;
